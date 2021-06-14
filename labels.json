@@ -1,0 +1,81 @@
+[
+  {
+    "name": "Priority: Critical",
+    "color": "8c001a",
+    "description": "우선순위 긴급"
+  },
+  {
+    "name": "Priority: High",
+    "color": "FF0000",
+    "description": "우선순위 상"
+  },
+  {
+    "name": "Priority: Low",
+    "color": "F9966b",
+    "description": "우선순위 하"
+  },
+  {
+    "name": "Priority: Medium",
+    "color": "E77471",
+    "description": "우선순위 중"
+  },
+  {
+    "name": "Network",
+    "color": "a0ffb8",
+    "description": "네트워크 관련"
+  },
+  {
+    "name": "UI Component",
+    "color": "cfd3d7",
+    "description": "UI 컴포넌트 관련",
+    "aliases": [
+      "duplicate"
+    ]
+  },
+  {
+    "name": "Refactor",
+    "color": "539606",
+    "description": "코드 리팩토링"
+  },
+  {
+    "name": "View",
+    "color": "66e26c",
+    "description": "뷰 작업 (하나의 완성된 레이아웃)",
+    "aliases": [
+      "wontfix"
+    ]
+  },
+  {
+    "name": "Status: Reviewing",
+    "color": "2db78b",
+    "description": "처리하고 리뷰 중인 이슈"
+  },
+  {
+    "name": "Status: To Do",
+    "color": "757c06",
+    "description": "처리해야 되는 이슈"
+  },
+  {
+    "name": "Type: Feature/Document",
+    "color": "0075ca",
+    "description": "문서 추가 및 보완 작업"
+  },
+  {
+    "name": "Type: Feature/Function",
+    "color": "a2eeef",
+    "description": "새로운 기능 및 개선 사항",
+    "aliases": [
+      "enhancement"
+    ]
+  },
+  {
+    "name": "Type: Feature/UI",
+    "color": "7057ff",
+    "description": "UI 수정 및 개선 사항"
+  },
+  {
+    "name": "taeeehyeon",
+    "color": "faf3f3",
+    "description": "김태현의 할 일"
+  }
+]
