@@ -21,8 +21,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.makeKeyAndVisible()
         
         // 스플래시 뷰가 나온 후 2초 뒤에 홈 뷰 노출
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-            let homeNavigationController = UINavigationController(rootViewController: HomeViewController())
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            let homeNavigationController = UINavigationController(rootViewController: CalendarViewController())
             self.window?.rootViewController = homeNavigationController
             self.window?.makeKeyAndVisible()
         }
