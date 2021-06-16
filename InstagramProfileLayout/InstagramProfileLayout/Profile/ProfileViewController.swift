@@ -7,6 +7,8 @@
 
 import UIKit
 
+import SnapKit
+
 class ProfileViewController: UIViewController {
     
     // MARK: - Properties
@@ -36,7 +38,14 @@ extension ProfileViewController {
     private func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
+        
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 50
+        
         tableView.registerCell(type: ProfileAreaTVC.self)
+        tableView.registerCell(type: PostAreaTVC.self)
+        
+        tableView.tableFooterView = UIView()
     }
 }
 
@@ -44,31 +53,54 @@ extension ProfileViewController {
 // MARK: - Table View Delegate
 
 extension ProfileViewController: UITableViewDelegate {
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 315
+        if indexPath.row == 0 {
+            return 315
+        } else {
+            return 798
+        }
     }
-    
 }
 
 // MARK: - Table View DataSource
 
 extension ProfileViewController: UITableViewDataSource {
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueCell(withType: ProfileAreaTVC.self, for: indexPath) as? ProfileAreaTVC else {
+        
+        switch indexPath.row {
+        case 0:
+            guard let cell = tableView.dequeueCell(withType: ProfileAreaTVC.self, for: indexPath) as? ProfileAreaTVC else {
+                return UITableViewCell()
+            }
+            
+            return cell
+        case 1:
+            guard let cell = tableView.dequeueCell(withType: PostAreaTVC.self, for: indexPath) as? PostAreaTVC else {
+                return UITableViewCell()
+            }
+            
+            cell.layoutIfNeeded()
+            let postVC = PostViewController()
+            self.addChild(postVC)
+            cell.contentView.addSubview(postVC.view)
+
+            postVC.view.snp.makeConstraints {
+                $0.edges.equalTo(cell.snp.edges)
+            }
+            
+
+            
+            
+            return cell
+        default:
             return UITableViewCell()
         }
-        
-        return cell
+
     }
     
 }

@@ -9,9 +9,27 @@ import UIKit
 
 class PostCVC: UICollectionViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    static let identifier = "PostCVC"
+    
+    var postImage = UIImageView()
+    
+    func setStatus(imageName: String) {
+        if let image = UIImage(named: imageName) {
+            postImage.image = image
+        }
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        addSubview(postImage)
+        
+        postImage.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
 }
