@@ -18,14 +18,8 @@ class GridViewController: UIViewController {
         $0.collectionViewLayout = layout
     }
     
-    var posts = [
-        "postImg1", "postImg2", "postImg3",
-        "postImg4", "postImg5", "postImg6",
-        "postImg7", "postImg8", "postImg9",
-        "postImg1", "postImg2", "postImg3",
-        "postImg4", "postImg5", "postImg6",
-        "postImg7", "postImg8", "postImg9",
-    ]
+    var posts : [String] = []
+    private var cHeight: CGFloat = 500
     
 
     override func viewDidLoad() {
@@ -53,6 +47,15 @@ class GridViewController: UIViewController {
         collectionView.snp.makeConstraints {
             $0.top.left.right.height.equalToSuperview()
         }
+    }
+    
+    func setData(imgList: [String]) {
+        self.posts = imgList
+    }
+    
+    func setHeight() {
+        collectionView.contentSize.height = self.cHeight
+        view.layoutIfNeeded()
     }
 }
 

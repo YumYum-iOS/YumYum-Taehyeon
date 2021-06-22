@@ -41,6 +41,17 @@ class PostViewController: UIViewController {
     // MARK: - Properties
     var tabSelectedIndex: Int = 0
     var tabList = ["gridIcon", "tagsIcon"]
+    
+    var imgList = ["postImg1", "postImg2", "postImg3",
+                   "postImg4", "postImg5", "postImg6",
+                   "postImg7", "postImg8", "postImg9",
+                   "postImg1", "postImg2", "postImg3",
+                   "postImg4", "postImg5", "postImg6",
+                   "postImg7", "postImg8", "postImg9",
+                   "postImg4", "postImg5", "postImg6",]
+    
+    var contentHeight: CGFloat = 500
+    var cellWidth: CGFloat = UIScreen.main.bounds.width * (124/375)
 
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -50,10 +61,12 @@ class PostViewController: UIViewController {
         setScrollView()
     }
     
-    override func viewDidLayoutSubviews() {
+    // MARK: - Helpers
+    func setHeight() {
+        let cellCount = imgList.count / 3
+        self.contentHeight = 44 + 1 + cellWidth * CGFloat(cellCount)
     }
     
-    // MARK: - Helpers
     private func setDelegate() {
         tabMenuCollectionView.delegate = self
         tabMenuCollectionView.dataSource = self
@@ -88,10 +101,13 @@ class PostViewController: UIViewController {
         
     
         self.addChild(firstVC)
+        firstVC.setData(imgList: imgList)
+        firstVC.setHeight()
         guard let gridView = firstVC.view else { return }
         gridView.frame = CGRect(x: 0, y: 0,
                                 width: self.scrollView.frame.width,
                                 height: self.scrollView.frame.height)
+
         
         self.addChild(secondVC)
         guard let tagsView = secondVC.view else { return }
@@ -131,6 +147,7 @@ extension PostViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = UIScreen.main.bounds.width
         let cellwidth = width * (186/375)
+        
         
         return CGSize(width: cellwidth, height: 44)
     }
@@ -186,8 +203,6 @@ extension PostViewController: UIScrollViewDelegate {
        
         tabMenuCollectionView.reloadData()
     }
-    
-
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let cellwidth = UIScreen.main.bounds.width * (186/375)

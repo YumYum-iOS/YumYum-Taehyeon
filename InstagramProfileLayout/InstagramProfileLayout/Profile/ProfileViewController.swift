@@ -12,7 +12,7 @@ import SnapKit
 class ProfileViewController: UIViewController {
     
     // MARK: - Properties
-
+    private var contentHeight: CGFloat = 500
 
     // MARK: IBOutlets
     
@@ -55,9 +55,9 @@ extension ProfileViewController {
 extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 0 {
-            return 315
+            return tableView.rowHeight
         } else {
-            return 798
+            return self.contentHeight
         }
     }
 }
@@ -77,7 +77,6 @@ extension ProfileViewController: UITableViewDataSource {
             guard let cell = tableView.dequeueCell(withType: ProfileAreaTVC.self, for: indexPath) as? ProfileAreaTVC else {
                 return UITableViewCell()
             }
-            
             return cell
         case 1:
             guard let cell = tableView.dequeueCell(withType: PostAreaTVC.self, for: indexPath) as? PostAreaTVC else {
@@ -88,14 +87,14 @@ extension ProfileViewController: UITableViewDataSource {
             let postVC = PostViewController()
             self.addChild(postVC)
             cell.contentView.addSubview(postVC.view)
+            
+            postVC.setHeight()
+            self.contentHeight = postVC.contentHeight
 
             postVC.view.snp.makeConstraints {
                 $0.edges.equalTo(cell.snp.edges)
             }
-            
 
-            
-            
             return cell
         default:
             return UITableViewCell()
@@ -103,4 +102,9 @@ extension ProfileViewController: UITableViewDataSource {
 
     }
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row == 3 {
+            
+        }
+    }
 }
